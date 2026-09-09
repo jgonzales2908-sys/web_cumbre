@@ -109,6 +109,14 @@
       font-size: 12px;
     }
 
+    .error-message {
+      margin-top: 16px;
+      color: #c62828;
+      font-size: 14px;
+      min-height: 20px;
+      display: none;
+    }
+
     @media (max-width: 480px) {
       .login-container {
         padding: 32px 24px;
@@ -124,7 +132,7 @@
     <h1>Bienvenido</h1>
     <p class="subtitle">Ingresa tus credenciales para acceder al sistema.</p>
 
-    <form>
+    <form id="loginForm">
       <div class="form-group">
         <label for="usuario">Usuario</label>
         <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu usuario" required>
@@ -136,10 +144,31 @@
       </div>
 
       <button type="submit">Iniciar sesión</button>
+      <p id="error-message" class="error-message"></p>
     </form>
 
     <p class="footer">© 2026 Cumbre</p>
   </main>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('error-message');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const usuario = document.getElementById('usuario').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (usuario === 'jgonzales' && password === 'asd123') {
+        window.location.href = 'Curriculum_JGONZALES.html';
+        return;
+      }
+
+      errorMessage.textContent = 'Usuario o contraseña incorrectos.';
+      errorMessage.style.display = 'block';
+    });
+  </script>
 
 </body>
 </html>
